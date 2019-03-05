@@ -134,18 +134,18 @@ getNextEvent h@SlackHandle{..} = do
     raw <- WS.receiveData _shConnection
     case eitherDecode raw of
         Left e -> do
-            putStrLn $ unlines
+            {-putStrLn $ unlines
                 [ show raw
                 , e
                 , "Please report this failure to the github issue tracker"
-                ]
+                ]-}
             getNextEvent h
         Right event@(UnknownEvent val) -> do
-            putStrLn $ unlines
+            {-putStrLn $ unlines
                 [ show val
                 , "Failed to parse to a known event"
                 , "Please report this failure to the github issue tracker"
-                ]
+                ]-}
             return event
         Right event ->
             return event
